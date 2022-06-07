@@ -1,11 +1,20 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios'
+import TextEditor from './components/TextEditor';
+import TopBar from './components/TopBar';
 
 function App() {
-  const [code, setCode]=useState()
+  const [langs, setlangs] = useState({});
+  const [code, setCode] = useState()
   const [id, setId] = useState();
   const [result, setResult] = useState({});
+
+  useEffect(() => {
+    axios.get('https://ce.judge0.com/languages/')
+      .then(res => setlangs(res.data))
+  }, [])
+
   const submitHandler = (e) => {
     e.preventDefault()
     const formdata = {
@@ -22,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <form>
           <div>
           <input onChange={e => { setId(e.target.value) }} />
@@ -33,7 +42,9 @@ function App() {
           <button onClick={submitHandler}>Submit</button>
           <h1>{result ? result.stdout : ""}</h1>
         </form>
-      </header>
+      </header> */}
+      <TopBar langs={langs} />
+      <TextEditor />
     </div>
   );
 }
