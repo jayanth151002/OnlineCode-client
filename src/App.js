@@ -1,22 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import axios from 'axios'
 
 function App() {
+  const [code, setCode]=useState()
+  const [id, setId] = useState();
+  const [result, setResult] = useState({});
+  const submitHandler = (e) => {
+    e.preventDefault()
+    const formdata = {
+      language_id: id,
+      source_code: btoa(code)
+    }
+    axios.post('/createsub', formdata)
+      .then((res) => {
+        console.log('done', res.data)
+        setResult(res.data.stdout)
+      })
+      .catch((res) => console.log(res))
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <form>
+          <div>
+          <input onChange={e => { setId(e.target.value) }} />
+          </div>
+          <div>
+          <input onChange={e => { setCode(e.target.value) }} />
+          </div>
+          <button onClick={submitHandler}>Submit</button>
+          <h1>{result ? result.stdout : ""}</h1>
+        </form>
       </header>
     </div>
   );
