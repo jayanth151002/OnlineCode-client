@@ -6,8 +6,8 @@ import TopBar from './components/TopBar';
 
 function App() {
   const [langs, setlangs] = useState({});
-  const [code, setCode] = useState()
-  const [id, setId] = useState();
+  const [code, getCode] = useState()
+  const [id, getId] = useState();
   const [result, setResult] = useState({});
 
   useEffect(() => {
@@ -29,6 +29,7 @@ function App() {
       .catch((res) => console.log(res))
   }
 
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -43,8 +44,8 @@ function App() {
           <h1>{result ? result.stdout : ""}</h1>
         </form>
       </header> */}
-      <TopBar langs={langs} />
-      <TextEditor />
+      <TopBar langs={langs} getId={getId} submit={submitHandler} />
+      <TextEditor getCode={getCode} />
     </div>
   );
 }

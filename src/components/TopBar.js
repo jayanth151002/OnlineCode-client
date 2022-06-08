@@ -1,25 +1,39 @@
-import React from "react";
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import React, { useState } from "react";
+import { FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
-const TopBar = ({ langs }) => {
-    // const items = langs.map(x => {
-    //     return (
-    //         <MenuItem value={x.id}>{x.name}</MenuItem>
-    //     )
-    // })
-    const items = Object.entries(langs).map(x => <MenuItem value={x[1].id}>{x[1].name}</MenuItem>)
+const TopBar = ({ langs, getId, submit }) => {
+    const [id, setId] = useState()
+    const [lang, setLang] = useState('');
+    const items = Object.entries(langs).map((x, i) => <MenuItem key={i} value={x[1].name}>{x[1].name}</MenuItem>)
+    const Lang = name => {
+        Object.entries(langs).map(x => {
+            if (x[1].name === name) {
+                setLang(x[1].name)
+                getId(x[1].id)
+            }
+        })
+    }
     return (
-        <div className="m-5" style={{ width: "300px" }}>
-            <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Language</InputLabel>
-                <Select
-                    id="language"
-                    value={null}
-                    label="Language"
-                >
-                    {items}
-                </Select>
-            </FormControl>
+        <div className="row">
+            <div className="m-5 col-4" style={{ width: "300px" }}>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Language</InputLabel>
+                    <Select
+                        id="language"
+                        value={lang}
+                        label="Language"
+                        onChange={(e) => { Lang(e.target.value) }}
+                    >
+                        {items}
+                    </Select>
+                </FormControl>
+            </div>
+            <div className="col-4 offset-4 m-5">
+                <Button variant="contained" color="success" onClick={submit}>
+                    <PlayArrowIcon />
+                </Button>
+            </div>
         </div>
     )
 }
