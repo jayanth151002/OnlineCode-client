@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios'
 import TextEditor from './components/TextEditor';
 import TopBar from './components/TopBar';
+import Terminal from './components/Terminal';
 
 function App() {
   const [langs, setlangs] = useState({});
   const [code, getCode] = useState()
   const [id, getId] = useState();
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState("");
+  const [input, getInput] = useState("")
 
   useEffect(() => {
     axios.get('https://ce.judge0.com/languages/')
@@ -19,33 +21,23 @@ function App() {
     e.preventDefault()
     const formdata = {
       language_id: id,
-      source_code: btoa(code)
+      source_code: btoa(code),
+      stdin: btoa(input)
     }
     axios.post('/createsub', formdata)
       .then((res) => {
-        console.log('done', res.data)
-        setResult(res.data.stdout)
+        console.log('done', res)
+        setResult(res.data.output)
       })
-      .catch((res) => console.log(res))
+      .catch((err) => console.log(err))
   }
 
 
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <form>
-          <div>
-          <input onChange={e => { setId(e.target.value) }} />
-          </div>
-          <div>
-          <input onChange={e => { setCode(e.target.value) }} />
-          </div>
-          <button onClick={submitHandler}>Submit</button>
-          <h1>{result ? result.stdout : ""}</h1>
-        </form>
-      </header> */}
       <TopBar langs={langs} getId={getId} submit={submitHandler} />
       <TextEditor getCode={getCode} />
+      <Terminal result={result} getInput={getInput} />
     </div>
   );
 }

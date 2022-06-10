@@ -15,24 +15,33 @@ const TopBar = ({ langs, getId, submit }) => {
         })
     }
     return (
-        <div className="row">
-            <div className="m-5 col-4" style={{ width: "300px" }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Language</InputLabel>
-                    <Select
-                        id="language"
-                        value={lang}
-                        label="Language"
-                        onChange={(e) => { Lang(e.target.value) }}
-                    >
-                        {items}
-                    </Select>
-                </FormControl>
+        <div className="row py-3 topbar">
+            <div className="col-8">
+                <div className="col-4 offset-2">
+                    <div className="heading">
+                        OnlineCode
+                    </div>
+                </div>
             </div>
-            <div className="col-4 offset-4 m-5">
-                <Button variant="contained" color="success" onClick={submit}>
-                    <PlayArrowIcon />
-                </Button>
+            <div className="col-4 row">
+                <div className="col-8" style={{ width: "300px" }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Language</InputLabel>
+                        <Select
+                            id="language"
+                            value={lang}
+                            label="Language"
+                            onChange={(e) => { Lang(e.target.value) }}
+                        >
+                            {items}
+                        </Select>
+                    </FormControl>
+                </div>
+                <div className="col-4 my-2">
+                    <Button variant="contained" color="success" onClick={submit}>
+                        <PlayArrowIcon />
+                    </Button>
+                </div>
             </div>
         </div>
     )

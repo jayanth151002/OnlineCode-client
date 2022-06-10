@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.App{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.topbar{
+    height:15vh;
+}
+
+.heading {
+    font-family: Poppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:2.5rem;
+}
+
+.terminal{
+    height:30vh;
+    background-color: rgb(168, 249, 110);
+}

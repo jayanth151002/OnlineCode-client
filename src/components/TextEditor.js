@@ -8,9 +8,9 @@ const TextEditor = ({ getCode }) => {
     }
 
     return (
-        <div style={{ margin: "3px solid black" }}>
+        <div>
             <Editor
-                height="50vh"
+                height="55vh"
                 defaultLanguage="javascript"
                 defaultValue="// some comment"
                 onChange={handleEditorChange}
