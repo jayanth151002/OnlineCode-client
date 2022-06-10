@@ -27,7 +27,7 @@ function App() {
     axios.post('/createsub', formdata)
       .then((res) => {
         console.log('done', res)
-        setResult(res.data.output)
+        setResult(res.data)
       })
       .catch((err) => console.log(err))
   }
