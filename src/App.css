@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.App{
+.App {
     overflow-x: hidden;
     overflow-y: hidden;
 }
 
-.topbar{
-    height:15vh;
+.topbar {
+    height: 15vh;
+    background-color: rgb(79, 218, 237);
 }
 
 .heading {
@@ -14,10 +15,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size:2.5rem;
+    font-size: 2.5rem;
 }
 
-.terminal{
-    height:30vh;
-    background-color: rgb(168, 249, 110);
+.editor{
+    outline:5px solid purple;
+}
+
+.terminal {
+    height: 30vh;
+    background-color: rgb(79, 218, 237);
+}
+
+.resultbar {
+    height: 5vh;
 }

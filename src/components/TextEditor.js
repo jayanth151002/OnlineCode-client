@@ -8,11 +8,11 @@ const TextEditor = ({ getCode }) => {
     }
 
     return (
-        <div>
+        <div >
             <Editor
-                height="55vh"
-                defaultLanguage="javascript"
-                defaultValue="// some comment"
+                height="50vh"
+                defaultLanguage="python"
+                defaultValue="#Type your code here"
                 onChange={handleEditorChange}
             />
         </div>

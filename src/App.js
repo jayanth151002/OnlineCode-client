@@ -4,12 +4,19 @@ import axios from 'axios'
 import TextEditor from './components/TextEditor';
 import TopBar from './components/TopBar';
 import Terminal from './components/Terminal';
+import ResultBar from './components/ResultBar';
 
 function App() {
   const [langs, setlangs] = useState({});
   const [code, getCode] = useState()
   const [id, getId] = useState();
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState({
+    desc: "",
+    id: "",
+    message: "",
+    output: "",
+    time: ""
+  });
   const [input, getInput] = useState("")
 
   useEffect(() => {
@@ -19,6 +26,7 @@ function App() {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    console.log(input)
     const formdata = {
       language_id: id,
       source_code: btoa(code),
@@ -27,7 +35,15 @@ function App() {
     axios.post('/createsub', formdata)
       .then((res) => {
         console.log('done', res)
-        setResult(res.data)
+        setResult(() => {
+          return {
+            desc: res.data.desc,
+            id: res.data.id,
+            message: res.data.message,
+            output: res.data.output,
+            time: res.data.time
+          }
+        })
       })
       .catch((err) => console.log(err))
   }
@@ -36,7 +52,10 @@ function App() {
   return (
     <div className="App">
       <TopBar langs={langs} getId={getId} submit={submitHandler} />
-      <TextEditor getCode={getCode} />
+      <div className="editor">
+        <TextEditor getCode={getCode} />
+        <ResultBar result={result} />
+      </div>
       <Terminal result={result} getInput={getInput} />
     </div>
   );

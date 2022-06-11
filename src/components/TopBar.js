@@ -24,9 +24,9 @@ const TopBar = ({ langs, getId, submit }) => {
                 </div>
             </div>
             <div className="col-4 row">
-                <div className="col-8" style={{ width: "300px" }}>
+                <div className="col-8">
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Language</InputLabel>
+                        <InputLabel id="demo-simple-select-label" color="secondary">Language</InputLabel>
                         <Select
                             id="language"
                             value={lang}
