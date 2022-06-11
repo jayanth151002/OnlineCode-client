@@ -10,6 +10,7 @@ function App() {
   const [langs, setlangs] = useState({});
   const [code, getCode] = useState()
   const [id, getId] = useState();
+  const [isSubmit, setSubmit] = useState(false)
   const [result, setResult] = useState({
     desc: "",
     id: "",
@@ -25,6 +26,7 @@ function App() {
   }, [])
 
   const submitHandler = (e) => {
+    setSubmit(true)
     e.preventDefault()
     console.log(input)
     const formdata = {
@@ -44,6 +46,7 @@ function App() {
             time: res.data.time
           }
         })
+        setSubmit(false)
       })
       .catch((err) => console.log(err))
   }
@@ -56,7 +59,7 @@ function App() {
         <TextEditor getCode={getCode} />
         <ResultBar result={result} />
       </div>
-      <Terminal result={result} getInput={getInput} />
+      <Terminal result={result} getInput={getInput} isSubmit={isSubmit} />
     </div>
   );
 }

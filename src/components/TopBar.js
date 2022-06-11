@@ -4,7 +4,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const TopBar = ({ langs, getId, submit }) => {
     const [id, setId] = useState()
-    const [lang, setLang] = useState('');
+    const [lang, setLang] = useState('Python (3.8.1)');
     const items = Object.entries(langs).map((x, i) => <MenuItem key={i} value={x[1].name}>{x[1].name}</MenuItem>)
     const Lang = name => {
         Object.entries(langs).map(x => {

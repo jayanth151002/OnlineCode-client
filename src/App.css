@@ -18,8 +18,8 @@
     font-size: 2.5rem;
 }
 
-.editor{
-    outline:5px solid purple;
+.editor {
+    outline: 5px solid purple;
 }
 
 .terminal {
@@ -29,4 +29,15 @@
 
 .resultbar {
     height: 5vh;
+}
+
+.outputbox {
+    position: relative;
+}
+
+.loader-div {
+    position: absolute;
+    z-index: 1;
+    top: 78vh;
+    left: 17vw;
 }
